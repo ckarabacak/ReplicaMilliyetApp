@@ -2,6 +2,7 @@ package live.codemy.replicamilliyetapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.adapter_item_writer_list.view.*
 import live.codemy.replicamilliyetapp.R
@@ -36,6 +37,10 @@ class WriterListViewHolder(parent: ViewGroup) :
         itemView.txtWriterEmail.text = writerModel.writerEmail
         itemView.txtWriterName.text = writerModel.writerName
 //      itemView.imgProfilePhoto.background = writerList[position].writeTitle
+
+        itemView.imgProfilePhoto.setOnClickListener {
+            Toast.makeText(it.context, "Blabla", Toast.LENGTH_SHORT).show()
+        }
 
         itemView.setOnClickListener {
             setOnClickListener(writerModel, position)
