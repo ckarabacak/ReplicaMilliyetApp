@@ -1,5 +1,8 @@
 package live.codemy.replicamilliyetapp.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 
 /**     Code with ❤
 ╔════════════════════════════╗
@@ -11,9 +14,10 @@ package live.codemy.replicamilliyetapp.model
 ╚════════════════════════════╝
  */
 
+@Parcelize
 data class WriterModel(
     val profilePhotoLink: String,
     val writerName: String,
     val writerEmail: String,
     val writeTitle: String
-)
+) : Parcelable

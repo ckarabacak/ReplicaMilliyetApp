@@ -2,9 +2,9 @@ package live.codemy.replicamilliyetapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.adapter_item_writer_list.view.*
 import live.codemy.replicamilliyetapp.R
 import live.codemy.replicamilliyetapp.model.WriterModel
 
@@ -19,24 +19,31 @@ import live.codemy.replicamilliyetapp.model.WriterModel
 ╚════════════════════════════╝
  */
 
-class WriterListViewHolder(container: ViewGroup) :
+class WriterListViewHolder(parent: ViewGroup) :
     RecyclerView.ViewHolder(
-        LayoutInflater.from(container.context).inflate(
+        LayoutInflater.from(parent.context).inflate(
             R.layout.adapter_item_writer_list,
-            container,
+            parent,
             false
         )
     ) {
 
-    val imgProfilePhoto: ImageView = itemView.findViewById(R.id.imgProfilePhoto)
-    val txtWriterName: TextView = itemView.findViewById(R.id.txtWriterName)
-    val txtWriterEmail: TextView = itemView.findViewById(R.id.txtWriterEmail)
-    val txtWriteTitle: TextView = itemView.findViewById(R.id.txtWriteTitle)
+    fun bind(
+        writerModel: WriterModel,
+        position: Int,
+        setOnClickListener: (writerModel: WriterModel, position: Int) -> Unit
+    ) {
+        itemView.txtWriteTitle.text = writerModel.writeTitle
+        itemView.txtWriterEmail.text = writerModel.writerEmail
+        itemView.txtWriterName.text = writerModel.writerName
+//      itemView.imgProfilePhoto.background = writerList[position].writeTitle
 
-    fun bind(writerModel: WriterModel) {
+        itemView.imgProfilePhoto.setOnClickListener {
+            Toast.makeText(it.context, "Blabla", Toast.LENGTH_SHORT).show()
+        }
 
-        txtWriterName.text = writerModel.writerName
-        txtWriterEmail.text = writerModel.writerEmail
-        txtWriteTitle.text = writerModel.writeTitle
+        itemView.setOnClickListener {
+            setOnClickListener(writerModel, position)
+        }
     }
 }

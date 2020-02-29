@@ -16,19 +16,19 @@ import live.codemy.replicamilliyetapp.model.WriterModel
 ╚════════════════════════════╝
  */
 
-class WriterListAdapter(val writerList: List<WriterModel>) :
+class WriterListAdapter(
+    private val writerList: List<WriterModel>,
+    private val setOnClicListener: (writerModel: WriterModel, position: Int) -> Unit
+) :
     RecyclerView.Adapter<WriterListViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WriterListViewHolder {
-        return WriterListViewHolder(parent)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WriterListViewHolder =
+        WriterListViewHolder(parent)
 
-    override fun getItemCount(): Int {
-        return writerList.size
-    }
+    override fun getItemCount(): Int = writerList.size
 
     override fun onBindViewHolder(holder: WriterListViewHolder, position: Int) {
-        holder.bind(writerList[position])
-        Log.e("Adapter", "$position")
+        holder.bind(writerList[position], position, setOnClicListener)
+        Log.e("WriterListAdapter", "$position")
     }
 }
